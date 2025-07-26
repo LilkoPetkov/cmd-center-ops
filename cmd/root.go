@@ -34,7 +34,7 @@ func myColorScheme() fang.ColorScheme {
 var rootCmd = &cobra.Command{
 	Use:   "ops",
 	Short: styles.NewStyles().Title.Render("🔥 OPS🔥"),
-	Long: `🌟 commandCenter is a powerful, user-friendly Command Line Interface (CLI) application built for developers, system administrators, network engineers, and cybersecurity professionals. It provides precise and flexible tools for domain name resolution, DNS diagnostics, and DNS record retrieval directly from the terminal.🌟
+	Long: `🌟 ops is a powerful, user-friendly Command Line Interface (CLI) application built for developers, system administrators, network engineers, and cybersecurity professionals. It provides precise and flexible tools for domain name resolution, DNS diagnostics, and DNS record retrieval directly from the terminal.🌟
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:

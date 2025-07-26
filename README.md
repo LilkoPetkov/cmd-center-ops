@@ -25,7 +25,7 @@
 
     ```sh
     git clone git@github.com:LilkoPetkov/cmd-center-ops.git
-    cd command_center_go
+    cd cmd-center-ops
     ```
 
 2.  **Build the binary:**
