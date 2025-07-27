@@ -31,6 +31,13 @@ var metaDataIngestCmd = &cobra.Command{
 	Run: ingest,
 }
 
+// init initializes the ingest command and its flags.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	metadataCmd.AddCommand(metaDataIngestCmd)
 
@@ -49,6 +56,13 @@ type PythonVirtualEnvSetup interface {
 	runOpenMetaDataIngestion()
 }
 
+// checkDependency checks if a binary dependency is installed and in the system's PATH.
+//
+// Args:
+//   - binaryDependencyName: The name of the binary to check.
+//
+// Returns:
+//   - None
 func checkDependency(binaryDependencyName string) {
 	if _, err := exec.LookPath(binaryDependencyName); err != nil {
 		message := fmt.Sprintf("%s, is not installed or not in $PATH", binaryDependencyName)
@@ -59,6 +73,13 @@ func checkDependency(binaryDependencyName string) {
 	}
 }
 
+// getPwd gets the current working directory.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - string: The current working directory.
 func getPwd() string {
 	pwd, err := os.Getwd()
 	if err != nil {
@@ -68,6 +89,14 @@ func getPwd() string {
 	return pwd
 }
 
+// executeCommand executes a shell command and logs the output.
+//
+// Args:
+//   - command: The command to execute.
+//   - args: The arguments to the command.
+//
+// Returns:
+//   - None
 func executeCommand(command string, args ...string) {
 	cmd := exec.Command(command, args...)
 	if strings.Contains(command, "metadata") {
@@ -84,10 +113,24 @@ func executeCommand(command string, args ...string) {
 	log.Printf(styles.StyliseMessage(fmt.Sprintf("Command executed successfully: %s%s", command, args), styles.FormatStyle.Highlight))
 }
 
+// runOpenMetaDataIngestion runs the Open-Metadata ingestion process.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func (V VirtualPythonEnv) runOpenMetaDataIngestion() {
 	executeCommand(V.executablePath, "ingest", "-c", V.pathToOpenMetaDataConfig)
 }
 
+// cleanUp removes a directory.
+//
+// Args:
+//   - dirToRemove: The directory to remove.
+//
+// Returns:
+//   - None
 func cleanUp(dirToRemove string) {
 	err := os.RemoveAll(dirToRemove)
 	if err != nil {
@@ -97,11 +140,26 @@ func cleanUp(dirToRemove string) {
 	log.Println(styles.StyliseMessage("Temporary resources cleaned up", styles.FormatStyle.Highlight))
 }
 
+// ingestMetaData runs the Open-Metadata ingestion process.
+//
+// Args:
+//   - P: The PythonVirtualEnvSetup interface.
+//
+// Returns:
+//   - None
 func ingestMetaData(P PythonVirtualEnvSetup) {
 	log.Println(styles.StyliseMessage("Starting MetaData Ingestion...", styles.FormatStyle.Highlight))
 	P.runOpenMetaDataIngestion()
 }
 
+// ingest is the main function for the ingest command.
+//
+// Args:
+//   - cmd: The cobra command.
+//   - args: The command arguments.
+//
+// Returns:
+//   - None
 func ingest(cmd *cobra.Command, args []string) {
 	projectToml, err := validators.VerifyStringInputs(cmd, "project_toml")
 	if err != nil {

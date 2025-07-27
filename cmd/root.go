@@ -12,6 +12,13 @@ import (
 	"os"
 )
 
+// myColorScheme returns a custom color scheme for the help command.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - fang.ColorScheme: The custom color scheme.
 func myColorScheme() fang.ColorScheme {
 	base := lipgloss.Color("#FFFFFF")
 	return fang.ColorScheme{
@@ -43,6 +50,12 @@ var rootCmd = &cobra.Command{
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func Execute() {
 	opts := []fang.Option{
 		fang.WithVersion("v0.0.1"),
@@ -58,6 +71,13 @@ func Execute() {
 	// }
 }
 
+// init initializes the root command and its flags.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,

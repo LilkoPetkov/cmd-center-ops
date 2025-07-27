@@ -33,12 +33,27 @@ var startServerCmd = &cobra.Command{
 	Run: startDNSServer,
 }
 
+// init initializes the startServerCmd and its flags.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	startServerCmd.Flags().StringP("port", "p", "8888", "port for the DNS server")
 
 	connectCmd.AddCommand(startServerCmd)
 }
 
+// startDNSServer starts a DNS server on the specified port.
+//
+// Args:
+//   - cmd: The cobra command.
+//   - args: The command arguments.
+//
+// Returns:
+//   - None
 func startDNSServer(cmd *cobra.Command, args []string) {
 	port, err := validators.VerifyStringInputs(cmd, "port")
 	if err != nil {

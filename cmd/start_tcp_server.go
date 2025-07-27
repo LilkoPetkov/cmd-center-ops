@@ -34,12 +34,26 @@ var startTCPServerCmd = &cobra.Command{
 	Run: startTCPServer,
 }
 
+// init initializes the startTCPServerCmd and its flags.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	startTCPServerCmd.Flags().StringP("port", "p", "8888", "port for the TCP server")
 
 	connectCmd.AddCommand(startTCPServerCmd)
 }
 
+// handleConnection handles a single TCP connection.
+//
+// Args:
+//   - c: The TCP connection.
+//
+// Returns:
+//   - None
 func handleConnection(c net.Conn) {
 	fmt.Printf("Serving %s\n", c.RemoteAddr().String())
 	packet := make([]byte, 4096)
@@ -58,6 +72,14 @@ func handleConnection(c net.Conn) {
 	c.Write(packet)
 }
 
+// startTCPServer starts a TCP server on the specified port.
+//
+// Args:
+//   - cmd: The cobra command.
+//   - args: The command arguments.
+//
+// Returns:
+//   - None
 func startTCPServer(cmd *cobra.Command, args []string) {
 	port, err := validators.VerifyStringInputs(cmd, "port")
 	if err != nil {

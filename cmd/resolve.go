@@ -45,6 +45,13 @@ var resolve = &cobra.Command{
 	Run: resolveDomain,
 }
 
+// init initializes the resolve command and its flags.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	dnsCmd.AddCommand(resolve)
 
@@ -55,6 +62,14 @@ func init() {
 	resolve.MarkFlagsMutuallyExclusive("qtype", "all")
 }
 
+// resolveDomain is the main function for the resolve command.
+//
+// Args:
+//   - cmd: The cobra command.
+//   - args: The command arguments.
+//
+// Returns:
+//   - None
 func resolveDomain(cmd *cobra.Command, args []string) {
 	domainName, err := validators.VerifyStringInputs(cmd, "domain")
 	if err != nil {
@@ -85,14 +100,35 @@ func resolveDomain(cmd *cobra.Command, args []string) {
 
 }
 
+// ResolveDomain resolves a domain name.
+//
+// Args:
+//   - D: The DomainInterface.
+//
+// Returns:
+//   - None
 func ResolveDomain(D DomainInterface) {
 	D.Resolve()
 }
 
+// ResolveAllRecords resolves all records for a domain name.
+//
+// Args:
+//   - D: The DomainInterface.
+//
+// Returns:
+//   - None
 func ResolveAllRecords(D DomainInterface) {
 	D.ResolveAll()
 }
 
+// Resolve resolves a domain name.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func (D Domain) Resolve() {
 	in := D.PrepareDnsCall(D.qtype)
 
@@ -105,6 +141,13 @@ func (D Domain) Resolve() {
 	}
 }
 
+// ResolveAll resolves all records for a domain name.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func (D Domain) ResolveAll() {
 	for _, dnsRecord := range D.recordTypes {
 		in := D.PrepareDnsCall(dnsRecord)
@@ -120,6 +163,13 @@ func (D Domain) ResolveAll() {
 	}
 }
 
+// PrepareDnsCall prepares a DNS call.
+//
+// Args:
+//   - qtype: The query type.
+//
+// Returns:
+//   - *dns.Msg: The DNS message.
 func (D Domain) PrepareDnsCall(qtype string) *dns.Msg {
 	qtypeToUpper := strings.ToUpper(qtype)
 	record, ok := dns.StringToType[qtypeToUpper]

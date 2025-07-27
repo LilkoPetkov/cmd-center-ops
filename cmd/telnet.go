@@ -48,6 +48,13 @@ var testServerConnectionCmd = &cobra.Command{
 	Run: testConnection,
 }
 
+// init initializes the testServerConnectionCmd and its flags.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	connectCmd.AddCommand(testServerConnectionCmd)
 
@@ -55,6 +62,14 @@ func init() {
 	testServerConnectionCmd.Flags().StringP("port", "p", "443", "port which would be used for the connection")
 }
 
+// testConnection is the main function for the telnet command.
+//
+// Args:
+//   - cmd: The cobra command.
+//   - args: The command arguments.
+//
+// Returns:
+//   - None
 func testConnection(cmd *cobra.Command, args []string) {
 	host, err := validators.VerifyStringInputs(cmd, "hostname")
 	if err != nil {
@@ -74,6 +89,13 @@ func testConnection(cmd *cobra.Command, args []string) {
 	TestServerConnection(destination)
 }
 
+// telnet connects to a host and port.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func (D Destination) telnet() {
 	destination := fmt.Sprintf("%s:%s", D.host, D.port)
 
@@ -87,6 +109,13 @@ func (D Destination) telnet() {
 	fmt.Printf(styles.NewStyles().Highlight.Render("Successfully connected to %s"), destination)
 }
 
+// TestServerConnection tests the connection to a server.
+//
+// Args:
+//   - D: The DestinationInterface.
+//
+// Returns:
+//   - None
 func TestServerConnection(D DestinationInterface) {
 	D.telnet()
 }

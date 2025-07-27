@@ -42,6 +42,13 @@ var yamlUpdateGeneralCmd = &cobra.Command{
 	Run: processYamlGeneral,
 }
 
+// init initializes the yamlUpdateGeneralCmd and its flags.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	yamlCmd.AddCommand(yamlUpdateGeneralCmd)
 
@@ -51,6 +58,14 @@ func init() {
 
 }
 
+// walkAST traverses the AST of a YAML document.
+//
+// Args:
+//   - node: The current AST node.
+//   - visit: A function to apply to each mapping value node.
+//
+// Returns:
+//   - None
 func walkAST(node ast.Node, visit func(pair *ast.MappingValueNode, key string, val ast.Node)) {
 	switch n := node.(type) {
 	case *ast.MappingNode:
@@ -74,6 +89,15 @@ func walkAST(node ast.Node, visit func(pair *ast.MappingValueNode, key string, v
 	}
 }
 
+// writeToYaml writes the given AST node to a YAML file.
+//
+// Args:
+//   - rootNode: The root AST node to write.
+//   - fileName: The name of the file to write to.
+//   - hasStartingBlock: A boolean indicating if the original file had a "---" starting block.
+//
+// Returns:
+//   - None
 func writeToYaml(rootNode ast.Node, fileName string, hasStartingBlock bool) {
 	pr := &printer.Printer{}
 	src := pr.PrintNode(rootNode)
@@ -92,6 +116,15 @@ func writeToYaml(rootNode ast.Node, fileName string, hasStartingBlock bool) {
 	fmt.Println(styles.NewStyles().Highlight.Render("Modified YAML written to" + fileName))
 }
 
+// parseYaml parses a YAML file and updates the specified key with the given value.
+//
+// Args:
+//   - fullFilePath: The full path to the YAML file.
+//   - k: The key to update.
+//   - value: The new value for the key.
+//
+// Returns:
+//   - None
 func parseYaml(fullFilePath, k, value string) {
 	data, err := os.ReadFile(fullFilePath)
 	if err != nil {
@@ -120,6 +153,15 @@ func parseYaml(fullFilePath, k, value string) {
 	writeToYaml(rootNode, fullFilePath, hasStartingBlock)
 }
 
+// processAllYamlsNoFilter processes all YAML files in a given path (file or directory) without filtering.
+//
+// Args:
+//   - path: The path to the YAML file or directory.
+//   - k: The key to update.
+//   - value: The new value for the key.
+//
+// Returns:
+//   - None
 func processAllYamlsNoFilter(path, k, value string) {
 	entry, err := os.Stat(path)
 	if err != nil {
