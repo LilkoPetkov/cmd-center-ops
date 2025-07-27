@@ -13,6 +13,13 @@ type LipglossStyles struct {
 	Error     lipgloss.Style
 }
 
+// NewStyles returns a new LipglossStyles struct with predefined styles.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - LipglossStyles: A struct containing various lipgloss styles.
 func NewStyles() LipglossStyles {
 	baseStyle := lipgloss.NewStyle().
 		Foreground(lipgloss.Color("#FAFAFA")).
@@ -50,6 +57,14 @@ func NewStyles() LipglossStyles {
 	}
 }
 
+// StyliseMessage applies a given lipgloss style to a message string.
+//
+// Args:
+//   - message: The string message to stylise.
+//   - style: The lipgloss style to apply.
+//
+// Returns:
+//   - string: The stylised message string.
 func StyliseMessage(message string, style lipgloss.Style) string {
 	return style.Render(message)
 }

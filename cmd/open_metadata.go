@@ -14,6 +14,13 @@ prior to the ingestion.`,
 	Aliases: []string{"metadata", "open_meta_data"},
 }
 
+// init initializes the metadata command.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	rootCmd.AddCommand(metadataCmd)
 }

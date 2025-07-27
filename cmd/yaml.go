@@ -9,6 +9,13 @@ var yamlCmd = &cobra.Command{
 	Short: "⚙️ Manage YAML configuration files.",
 }
 
+// init initializes the yaml command.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	rootCmd.AddCommand(yamlCmd)
 }

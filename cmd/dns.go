@@ -9,6 +9,13 @@ var dnsCmd = &cobra.Command{
 	Short: "🛰️ Get information about resolution of a domain name.",
 }
 
+// init initializes the dns command.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	rootCmd.AddCommand(dnsCmd)
 }

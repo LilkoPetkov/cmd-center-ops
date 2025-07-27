@@ -11,6 +11,13 @@ var connectCmd = &cobra.Command{
 or launch a lightweight TCP server. Useful for testing, debugging, and developing network protocols or services.`,
 }
 
+// init initializes the server command.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	rootCmd.AddCommand(connectCmd)
 }

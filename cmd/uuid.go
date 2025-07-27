@@ -33,6 +33,13 @@ var uuidCmd = &cobra.Command{
 	Run: generateUUID,
 }
 
+// init initializes the uuid command and its flags.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	rootCmd.AddCommand(uuidCmd)
 
@@ -41,11 +48,11 @@ func init() {
 
 // createUUID allows the user to create a UUID4 identifier
 //
-// Params:
-// - None
+// Args:
+//   - None
 //
 // Returns:
-// - string: the UUID as a string
+//   - None
 func createUUID() {
 	log.Println(styles.StyliseMessage("UUID❹ : "+uuid.NewString(), styles.FormatStyle.Highlight))
 }
@@ -61,6 +68,13 @@ func createClockUUID() {
 	log.Println(styles.StyliseMessage("UUID🕕: "+string(uuid.ClockSequence()), styles.FormatStyle.Highlight))
 }
 
+// validateUUID validates a UUID string.
+//
+// Args:
+//   - uuidString: The UUID string to validate.
+//
+// Returns:
+//   - error: An error if the UUID is invalid, otherwise nil.
 func validateUUID(uuidString string) error {
 
 	return uuid.Validate(uuidString)

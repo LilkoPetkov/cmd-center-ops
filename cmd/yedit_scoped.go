@@ -49,6 +49,13 @@ var yamlUpdateScopedCmd = &cobra.Command{
 	Run: processYaml,
 }
 
+// init initializes the yamlUpdateScopedCmd and its flags.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func init() {
 	yamlCmd.AddCommand(yamlUpdateScopedCmd)
 
@@ -59,6 +66,13 @@ func init() {
 
 }
 
+// walkAndEditFromMatchedKey traverses the AST and edits values based on a matched key.
+//
+// Args:
+//   - node: The current AST node.
+//
+// Returns:
+//   - None
 func (Y YamlConfigDetails) walkAndEditFromMatchedKey(
 	node ast.Node,
 ) {
@@ -89,6 +103,13 @@ func (Y YamlConfigDetails) walkAndEditFromMatchedKey(
 
 }
 
+// drillAndEdit drills down into the AST and edits the value of a specific key.
+//
+// Args:
+//   - node: The current AST node.
+//
+// Returns:
+//   - None
 func (Y YamlConfigDetails) drillAndEdit(
 	node ast.Node,
 ) {
@@ -113,6 +134,13 @@ func (Y YamlConfigDetails) drillAndEdit(
 	}
 }
 
+// parseYamlFilter parses a YAML file and applies the scoped edit.
+//
+// Args:
+//   - fullFilePath: The full path to the YAML file.
+//
+// Returns:
+//   - None
 func (Y YamlConfigDetails) parseYamlFilter(fullFilePath string) {
 	data, err := os.ReadFile(fullFilePath)
 	if err != nil {
@@ -133,6 +161,13 @@ func (Y YamlConfigDetails) parseYamlFilter(fullFilePath string) {
 	}
 }
 
+// processYamlsFilter processes YAML files based on the configured details.
+//
+// Args:
+//   - None
+//
+// Returns:
+//   - None
 func (Y YamlConfigDetails) processYamlsFilter() {
 	entry, err := os.Stat(Y.Path)
 	if err != nil {
