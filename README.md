@@ -1,6 +1,6 @@
-# 🚀 Command Center (ops)
+# 🚀 CMD-Center (ops)
 
-🌟 **Command Center** is a powerful, user-friendly Command Line Interface (CLI) application built for developers, system administrators, network engineers, and cybersecurity professionals. It provides precise and flexible tools for domain name resolution, DNS diagnostics, network services, YAML manipulation, and more, directly from your terminal. 🌟
+🌟 **CMD-Center** is a powerful, user-friendly Command Line Interface (CLI) application built for developers, system administrators, network engineers, and cybersecurity professionals. It provides precise and flexible tools for domain name resolution, DNS diagnostics, network services, YAML manipulation, and more, directly from your terminal. 🌟
 
 ## 🚀 Features
 
