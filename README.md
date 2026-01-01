@@ -1,25 +1,25 @@
-# 🚀 CMD-Center (ops)
+# CMD-Center (ops)
 
-🌟 **CMD-Center** is a powerful, user-friendly Command Line Interface (CLI) application built for developers, system administrators, network engineers, and cybersecurity professionals. It provides precise and flexible tools for domain name resolution, DNS diagnostics, network services, YAML manipulation, and more, directly from your terminal. 🌟
+ **CMD-Center** is a powerful, user-friendly Command Line Interface (CLI) application built for developers, system administrators, network engineers, and cybersecurity professionals. It provides precise and flexible tools for domain name resolution, DNS diagnostics, network services, YAML manipulation, and more, directly from your terminal. 🌟
 
-## 🚀 Features
+## Features
 
-- **🌐 DNS Tools**:
+- ** DNS Tools**:
   - Resolve domain names for various record types (A, AAAA, CNAME, NS, TXT).
   - Start a local DNS server for testing and diagnostics.
-- **🔌 Network Utilities**:
+- ** Network Utilities**:
   - Start a simple TCP server.
   - Test TCP connections to any host and port (a `telnet`-like utility).
-- **📝 YAML Management**:
+- ** YAML Management**:
   - Edit YAML files by updating key-value pairs globally.
   - Perform fine-grained, scoped edits within specific YAML blocks.
-- **⚙️ Data Generation & Management**:
+- ** Data Generation & Management**:
   - Generate various versions of UUIDs (v4, v6, v7).
   - Orchestrate Open-Metadata ingestion pipelines.
-- **🎨 Styled Output**:
+- ** Styled Output**:
   - Uses `lipgloss` for a clean, readable, and colorful user experience.
 
-## 📦 Installation
+## Installation
 
 1.  **Clone the repository:**
 
@@ -39,13 +39,13 @@
     sudo mv ops ~/go/bin/
     ```
 
-## 🛠️ Usage
+## Usage
 
 The root command is `ops`. You can see a list of all available commands by running `ops --help`.
 
-### 🌐 DNS Commands
+### DNS Commands
 
-#### 🔍 Resolve a Domain
+#### Resolve a Domain
 
 Get information about the resolution of a domain name.
 
@@ -63,9 +63,9 @@ Get information about the resolution of a domain name.
   ops dns resolve -d example.com -a
   ```
 
-### 🖥️ Server Commands
+### Server Commands
 
-#### 🛰️ Start a DNS Server
+#### Start a DNS Server
 
 Start a DNS server on a specified port for testing purposes.
 
@@ -80,7 +80,7 @@ Start a DNS server on a specified port for testing purposes.
   ops server dns -p 53
   ```
 
-#### 🔗 Start a TCP Server
+#### Start a TCP Server
 
 Start a TCP server on a specified port for network testing.
 
@@ -95,7 +95,7 @@ Start a TCP server on a specified port for network testing.
   ops server tcp -p 9000
   ```
 
-#### 📡 Test a Connection (Telnet)
+#### Test a Connection (Telnet)
 
 Test the connection to a server on a specific port, similar to `telnet`.
 
@@ -113,9 +113,9 @@ Test the connection to a server on a specific port, similar to `telnet`.
   ops server telnet -n 10.0.0.15 -p 8080
   ```
 
-### 📝 YAML Commands
+### YAML Commands
 
-#### 🔧 General YAML Edit
+#### General YAML Edit
 
 Update a YAML file's general structure without fine-grained control. This command will update all keys that match.
 
@@ -130,7 +130,7 @@ Update a YAML file's general structure without fine-grained control. This comman
   ops yaml yedit -p ./configs/ -k name -v my-updated-service
   ```
 
-#### 🎯 Scoped YAML Edit
+#### Scoped YAML Edit
 
 Update a YAML file's scoped value for more fine-grained control. This is useful for updating a key within a specific block or parent key.
 
@@ -145,7 +145,7 @@ Update a YAML file's scoped value for more fine-grained control. This is useful 
   ops yaml yedit_scoped -p ./configs/ -s "authService" -k "port" -v "8081"
   ```
 
-### 🆔 UUID Generation
+### UUID Generation
 
 Generate a new UUID. Supported types are `uuid4`, `uuid6`, `uuid7`, and `clock`.
 
@@ -163,11 +163,11 @@ Generate a new UUID. Supported types are `uuid4`, `uuid6`, `uuid7`, and `clock`.
   ops uuid --type=uuid7
   ```
 
-### 🔗 Open-Metadata Commands
+### Open-Metadata Commands
 
 Allows execution of Open-Metadata commands. This requires a Python virtual environment and `uv`.
 
-#### 📥 Ingest Metadata
+#### Ingest Metadata
 
 Ingest metadata using a connector and a YAML configuration file.
 
@@ -182,7 +182,7 @@ Ingest metadata using a connector and a YAML configuration file.
   ops ometadata ingest -p path/to/pyproject.toml -c path/to/config.yaml
   ```
 
-## 🏗️ Dependencies
+## Dependencies
 
 This project is built with several key Go libraries:
 
@@ -192,6 +192,6 @@ This project is built with several key Go libraries:
 - **[github.com/goccy/go-yaml](https://github.com/goccy/go-yaml)**: A robust YAML parser for Go.
 - **[github.com/google/uuid](https://github.com/google/uuid)**: A library for generating and working with UUIDs.
 
-## 📄 License
+## License
 
 This project is licensed under the terms of the [LICENSE](LICENSE) file.
