@@ -4,19 +4,19 @@
 
 ## Features
 
-- ** DNS Tools**:
+- **DNS Tools**:
   - Resolve domain names for various record types (A, AAAA, CNAME, NS, TXT).
   - Start a local DNS server for testing and diagnostics.
-- ** Network Utilities**:
+- **Network Utilities**:
   - Start a simple TCP server.
   - Test TCP connections to any host and port (a `telnet`-like utility).
-- ** YAML Management**:
+- **YAML Management**:
   - Edit YAML files by updating key-value pairs globally.
   - Perform fine-grained, scoped edits within specific YAML blocks.
-- ** Data Generation & Management**:
+- **Data Generation & Management**:
   - Generate various versions of UUIDs (v4, v6, v7).
   - Orchestrate Open-Metadata ingestion pipelines.
-- ** Styled Output**:
+- **Styled Output**:
   - Uses `lipgloss` for a clean, readable, and colorful user experience.
 
 ## Installation
