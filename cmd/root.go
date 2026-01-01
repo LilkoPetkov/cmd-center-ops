@@ -4,38 +4,14 @@ Copyright © 2025 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"commandCenter/styles"
 	"context"
-	"github.com/charmbracelet/fang"
-	"github.com/charmbracelet/lipgloss"
-	"github.com/spf13/cobra"
 	"os"
-)
 
-// myColorScheme returns a custom color scheme for the help command.
-//
-// Args:
-//   - None
-//
-// Returns:
-//   - fang.ColorScheme: The custom color scheme.
-func myColorScheme() fang.ColorScheme {
-	base := lipgloss.Color("#FFFFFF")
-	return fang.ColorScheme{
-		Base:         base,
-		Title:        lipgloss.Color("#FF0000"),
-		Description:  base,
-		Comment:      lipgloss.Color("#AAAAAA"),
-		Flag:         lipgloss.Color("#FF00FF"),
-		FlagDefault:  lipgloss.Color("#FF77FF"),
-		Command:      lipgloss.Color("#00FFFF"),
-		QuotedString: lipgloss.Color("#00FF00"),
-		Argument:     base,
-		Help:         base,
-		Dash:         base,
-		ErrorDetails: lipgloss.Color("#FF0000"),
-	}
-}
+	"commandCenter/styles"
+
+	"github.com/charmbracelet/fang"
+	"github.com/spf13/cobra"
+)
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
