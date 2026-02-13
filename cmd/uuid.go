@@ -1,10 +1,11 @@
 package cmd
 
 import (
-	"commandCenter/styles"
-	"commandCenter/validators"
 	"fmt"
 	"log"
+
+	"commandCenter/styles"
+	"commandCenter/validators"
 
 	"github.com/google/uuid"
 	"github.com/spf13/cobra"
@@ -12,7 +13,7 @@ import (
 
 var uuidCmd = &cobra.Command{
 	Use:   "uuid",
-	Short: "🎲 Generate new UUID with supported types: uuid4, uuid6, uuid7, clock",
+	Short: "Generate new UUID with supported types: uuid4, uuid6, uuid7, clock",
 	Example: `
       # Generate a default UUID (uuid4)
       ops uuid
@@ -76,7 +77,6 @@ func createClockUUID() {
 // Returns:
 //   - error: An error if the UUID is invalid, otherwise nil.
 func validateUUID(uuidString string) error {
-
 	return uuid.Validate(uuidString)
 }
 

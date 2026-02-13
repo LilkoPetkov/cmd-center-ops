@@ -16,8 +16,8 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "ops",
-	Short: styles.NewStyles().Title.Render("🔥 OPS🔥"),
-	Long: `🌟 ops is a powerful, user-friendly Command Line Interface (CLI) application built for developers, system administrators, network engineers, and cybersecurity professionals. It provides precise and flexible tools for domain name resolution, DNS diagnostics, and DNS record retrieval directly from the terminal.🌟
+	Short: styles.NewStyles().Title.Render("OPS"),
+	Long: `ops is a powerful, user-friendly Command Line Interface (CLI) application built for developers, system administrators, network engineers, and cybersecurity professionals. It provides precise and flexible tools for domain name resolution, DNS diagnostics, and DNS record retrieval directly from the terminal.
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
@@ -34,7 +34,7 @@ var rootCmd = &cobra.Command{
 //   - None
 func Execute() {
 	opts := []fang.Option{
-		fang.WithVersion("v0.0.1"),
+		fang.WithVersion("v0.0.2"),
 	}
 
 	if err := fang.Execute(context.Background(), rootCmd, opts...); err != nil {

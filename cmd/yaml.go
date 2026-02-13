@@ -6,7 +6,7 @@ import (
 
 var yamlCmd = &cobra.Command{
 	Use:   "yaml",
-	Short: "⚙️ Manage YAML configuration files.",
+	Short: "Manage YAML configuration files.",
 }
 
 // init initializes the yaml command.
