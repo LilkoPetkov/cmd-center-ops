@@ -6,7 +6,7 @@ import (
 
 var dnsCmd = &cobra.Command{
 	Use:   "dns",
-	Short: "🛰️ Get information about resolution of a domain name.",
+	Short: "Get information about resolution of a domain name.",
 }
 
 // init initializes the dns command.

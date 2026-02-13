@@ -1,13 +1,15 @@
 package cmd
 
 import (
-	"commandCenter/styles"
-	"commandCenter/validators"
 	"fmt"
-	"github.com/miekg/dns"
-	"github.com/spf13/cobra"
 	"log"
 	"strings"
+
+	"commandCenter/styles"
+	"commandCenter/validators"
+
+	"github.com/miekg/dns"
+	"github.com/spf13/cobra"
 )
 
 type DomainInterface interface {
@@ -97,7 +99,6 @@ func resolveDomain(cmd *cobra.Command, args []string) {
 	} else {
 		ResolveAllRecords(domain)
 	}
-
 }
 
 // ResolveDomain resolves a domain name.
@@ -153,12 +154,11 @@ func (D Domain) ResolveAll() {
 		in := D.PrepareDnsCall(dnsRecord)
 
 		fmt.Printf(styles.NewStyles().Title.Render(
-			"🛠️ %s Records 🛠️"), strings.ToUpper(dnsRecord),
+			"%s Records"), strings.ToUpper(dnsRecord),
 		)
 		fmt.Println()
 		for _, ans := range in.Answer {
 			fmt.Println(styles.NewStyles().Highlight.Render(ans.String()))
-
 		}
 	}
 }

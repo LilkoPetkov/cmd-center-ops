@@ -1,16 +1,17 @@
 package cmd
 
 import (
-	"commandCenter/styles"
-	"commandCenter/validators"
 	"fmt"
 	"log"
-	"regexp"
-	"sync"
-
 	"os"
 	"path/filepath"
+	"regexp"
+	"slices"
 	"strings"
+	"sync"
+
+	"commandCenter/styles"
+	"commandCenter/validators"
 
 	"github.com/goccy/go-yaml/ast"
 	"github.com/goccy/go-yaml/parser"
@@ -18,10 +19,11 @@ import (
 )
 
 type YamlConfigDetails struct {
-	Path   string
-	Substr *regexp.Regexp
-	Key    string
-	Value  string
+	Path       string
+	Substr     *regexp.Regexp
+	Key        string
+	Value      string
+	Exceptions []string
 }
 
 var yamlUpdateScopedCmd = &cobra.Command{
@@ -64,6 +66,7 @@ func init() {
 	yamlUpdateScopedCmd.Flags().StringP("key", "k", "exampleKey", "key that should be matched and updated")
 	yamlUpdateScopedCmd.Flags().StringP("value", "v", "exampleValue", "value that will be used for the matched key")
 
+	yamlUpdateScopedCmd.Flags().StringSliceP("exceptions", "e", []string{}, "exception regexes of a node that should be skipped completely")
 }
 
 // walkAndEditFromMatchedKey traverses the AST and edits values based on a matched key.
@@ -85,6 +88,10 @@ func (Y YamlConfigDetails) walkAndEditFromMatchedKey(
 			}
 			key := keyNode.Value
 
+			if slices.Contains(Y.Exceptions, key) {
+				continue
+			}
+
 			if Y.Substr.MatchString(key) {
 				Y.drillAndEdit(pair.Value)
 			}
@@ -100,7 +107,6 @@ func (Y YamlConfigDetails) walkAndEditFromMatchedKey(
 	case *ast.AnchorNode:
 		Y.walkAndEditFromMatchedKey(n.Value)
 	}
-
 }
 
 // drillAndEdit drills down into the AST and edits the value of a specific key.
@@ -197,7 +203,6 @@ func (Y YamlConfigDetails) processYamlsFilter() {
 					fullFilePath := filepath.Join(Y.Path, file.Name())
 					Y.parseYamlFilter(fullFilePath)
 				}
-
 			}()
 
 		}
@@ -234,11 +239,17 @@ func processYaml(cmd *cobra.Command, args []string) {
 		fmt.Printf(styles.NewStyles().Error.Render("error compiling regex pattern: %s"), err)
 	}
 
+	exceptions, err := cmd.Flags().GetStringSlice("exceptions")
+	if err != nil {
+		fmt.Printf(styles.NewStyles().Error.Render("error parsing 'exceptions': %s"), err)
+	}
+
 	yamlConfig := YamlConfigDetails{
-		Path:   path,
-		Substr: compiledPattern,
-		Key:    key,
-		Value:  value,
+		Path:       path,
+		Substr:     compiledPattern,
+		Key:        key,
+		Value:      value,
+		Exceptions: exceptions,
 	}
 
 	yamlConfig.processYamlsFilter()
