@@ -1,6 +1,6 @@
 # CMD-Center (ops)
 
- **CMD-Center** is a powerful, user-friendly Command Line Interface (CLI) application built for developers, system administrators, network engineers, and cybersecurity professionals. It provides precise and flexible tools for domain name resolution, DNS diagnostics, network services, YAML manipulation, and more, directly from your terminal. 🌟
+ **CMD-Center** is a powerful, user-friendly Command Line Interface (CLI) application built for developers, system administrators, network engineers, and cybersecurity professionals. It provides precise and flexible tools for domain name resolution, DNS diagnostics, network services, YAML manipulation, and more, directly from your terminal.
 
 ## Features
 
@@ -138,6 +138,9 @@ Update a YAML file's scoped value for more fine-grained control. This is useful 
 - **Examples:**
 
   ```sh
+  # Update the value of a specific key inside a matched YAML block with an exception (one or many)
+  ops yaml yedit_scoped -p ./config.yaml -s "database" -k "host" -v "localhost" -e "keyBlockToSkip" -e "anotherKeyToSkip"
+  
   # Update the value of a specific key inside a matched YAML block
   ops yaml yedit_scoped -p ./config.yaml -s "database" -k "host" -v "localhost"
 

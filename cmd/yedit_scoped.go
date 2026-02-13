@@ -32,6 +32,9 @@ var yamlUpdateScopedCmd = &cobra.Command{
 	Aliases:    []string{"yedit_scope", "yaml_edit_scoped", "edit_yaml_scoped"},
 	SuggestFor: []string{"edit", "yaml_edi", "editor"},
 	Example: `
+      # Update the value of a specific key inside a matched YAML block with exceptions
+      ops yaml yedit_scoped -p ./config.yaml -s "database" -k "host" -v "localhost" -e "keyBlockToSkip"
+		
       # Update the value of a specific key inside a matched YAML block
       ops yaml yedit_scoped -p ./config.yaml -s "database" -k "host" -v "localhost"
 
